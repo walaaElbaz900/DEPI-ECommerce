@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ECommerce.Models.Wishlist>
+
+@{
+    ViewData["Title"] = "My Wishlist";
+    var carsCount = ViewBag.Cars != null ? ViewBag.Cars.Count : 0;
+}
+
+<h1 class="text-center mb-4">My Wishlist</h1>
+
+<!-- Section-->
+<section class="py-3">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="~/CarPics/@item.Car.ImagesUrl" alt="@item.Car.Title" width="220px" height="220px" />
+                            <div class="card-body">
+                                @if (item.Car != null)
+                                {
+                                    <h5 class="card-title">@item.Car.Year @item.Car.Brand @item.Car.Model</h5>
+                                    <p class="card-text">Mileage: @item.Car.Mileage mi</p>
+                                    <p class="card-text">Price: $@item.Car.Price</p>
+                                    <p class="card-text">Rental Price: $@item.Car.RentalPricePerDay/Day</p>
+                                    <p class="card-text"><small class="text-muted">Added on @item.AddedAt.ToString("dd/MM/yyyy")</small></p>
+                                }
+                                else
+                                {
+                                    <h5 class="card-title">Car information unavailable</h5>
+                                }
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <a asp-action="Details" asp-controller="Car" asp-route-id="@item.CarID" class="btn btn-primary">View Details</a>
+                                    <form asp-action="RemoveFromWishlist" method="post">
+                                        <input type="hidden" name="carId" value="@item.CarID" />
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i> Remove
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <h3>Your wishlist is empty</h3>
+                    <p>Explore our cars and add some to your wishlist!</p>
+                    <a asp-controller="Car" asp-action="Index" class="btn btn-primary mt-3">Browse Cars</a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- <a asp-action="AddToWishlist" asp-controller="Wishlist" class="btn btn-primary">Add New Car</a> -->

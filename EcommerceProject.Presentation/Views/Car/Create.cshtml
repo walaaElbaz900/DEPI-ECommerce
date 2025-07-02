@@ -1,0 +1,113 @@
+﻿@model ECommerce.Models.Car
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>Create</h1>
+
+<h4>Car</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RentalPricePerDay" class="control-label"></label>
+                <input asp-for="RentalPricePerDay" class="form-control" />
+                <span asp-validation-for="RentalPricePerDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mileage" class="control-label"></label>
+                <input asp-for="Mileage" class="form-control" />
+                <span asp-validation-for="Mileage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FuelType" class="control-label"></label>
+                <input asp-for="FuelType" class="form-control" />
+                <span asp-validation-for="FuelType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransmissionType" class="control-label"></label>
+                <input asp-for="TransmissionType" class="form-control" />
+                <span asp-validation-for="TransmissionType" class="text-danger"></span>
+            </div>
+            <!--i added the availabilty status as a dropdown list-->
+            <div class="form-group">
+                <label asp-for="AvailabilityStatus" class="control-label"></label>
+                <select asp-for="AvailabilityStatus" asp-items="Html.GetEnumSelectList<AvailabilityStatus>()" class="form-select">
+                    <option value="">-- Select --</option>
+                </select>
+                <span asp-validation-for="AvailabilityStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+
+            <!-- If Code Works Remove it-->
+            <!--
+            <div class="form-group" hidden>
+                <label asp-for="ImagesUrl" class="control-label"></label>
+                <input asp-for="ImagesUrl" class="form-control"/>
+                <span asp-validation-for="ImagesUrl" class="text-danger"></span>
+            </div>
+            -->
+            
+            <div class="form-group">
+                <label asp-for="CarImage" class="control-label"></label>
+                <input asp-for="CarImage" class="form-control" type="file" />
+                <span asp-validation-for="CarImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

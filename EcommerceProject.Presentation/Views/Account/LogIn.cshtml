@@ -1,0 +1,114 @@
+﻿@model EcommerceProject.Presentation.ViewModels.LoginUserViewModel
+
+@{
+    ViewData["Title"] = "LogIn";
+}
+
+<div class="login-container" style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+    <div class="login-overlay">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card login-card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0 text-center"><i class="fas fa-car"></i> Car Showroom Login</h3>
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="LogIn" method="post">
+								<div asp-validation-summary="All" class="text-danger"></div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Email" class="form-label"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                                    </div>
+                                    <span asp-validation-for="Email" class="text-danger small"></span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Password" class="form-label"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input asp-for="Password" class="form-control" placeholder="Enter your password" />
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger small"></span>
+                                </div>
+
+                                <div class="form-group form-check mb-3">
+                                    <input class="form-check-input" asp-for="RememberMe" />
+                                    <label class="form-check-label" asp-for="RememberMe"></label>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-sign-in-alt"></i> Login
+                                    </button>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    <a asp-action="Register" class="text-decoration-none">Don't have an account? Register here</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <style>
+        .login-container {
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .login-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .login-card .card-header {
+                border-radius: 0 !important;
+                padding: 1.5rem;
+            }
+
+            .login-card .card-body {
+                padding: 2rem;
+            }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 0.75rem 1rem;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            transition: all 0.3s;
+        }
+
+            .btn-primary:hover {
+                background-color: #0b5ed7;
+                transform: translateY(-2px);
+            }
+    </style>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

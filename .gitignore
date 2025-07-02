@@ -1,0 +1,18 @@
+# Build and VS artifacts
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+*.pdb
+*.db
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+
+# User secret files
+secrets.json

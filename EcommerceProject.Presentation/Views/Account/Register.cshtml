@@ -1,0 +1,178 @@
+﻿@model EcommerceProject.Presentation.ViewModels.RegisterUserViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="register-container" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+    <div class="register-overlay">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card register-card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0 text-center"><i class="fas fa-user-plus"></i> Create Your Account</h3>
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="Register" method="post">
+								<div asp-validation-summary="All" class="text-danger"></div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="UserName" class="form-label"></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                <input asp-for="UserName" class="form-control" placeholder="Choose a username" />
+                                            </div>
+                                            <span asp-validation-for="UserName" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Email" class="form-label"></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                                            </div>
+                                            <span asp-validation-for="Email" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Password" class="form-label"></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                <input asp-for="Password" class="form-control" placeholder="Create password" />
+                                            </div>
+                                            <span asp-validation-for="Password" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="ConfirmPassword" class="form-label"></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm password" />
+                                            </div>
+                                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="Address" class="form-label"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        <input asp-for="Address" class="form-control" placeholder="Your address" />
+                                    </div>
+                                    <span asp-validation-for="Address" class="text-danger small"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="age" class="form-label"></label>
+                                            <input asp-for="age" class="form-control" placeholder="Age" />
+                                            <span asp-validation-for="age" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="PhoneNumber" class="form-label"></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                <input asp-for="PhoneNumber" class="form-control" placeholder="Phone number" />
+                                            </div>
+                                            <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label asp-for="Gender" class="form-label"></label>
+                                            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-select">
+                                                <option value="">-- Select --</option>
+                                            </select>
+                                            <span asp-validation-for="Gender" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-user-plus"></i> Register
+                                    </button>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    <a asp-action="LogIn" class="text-decoration-none">Already have an account? Login here</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <style>
+        .register-container {
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .register-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .register-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .register-card .card-header {
+                border-radius: 0 !important;
+                padding: 1.5rem;
+            }
+
+            .register-card .card-body {
+                padding: 2rem;
+            }
+
+        .form-control, .form-select {
+            border-radius: 5px;
+            padding: 0.75rem 1rem;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            transition: all 0.3s;
+        }
+
+            .btn-primary:hover {
+                background-color: #0b5ed7;
+                transform: translateY(-2px);
+            }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+        }
+    </style>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

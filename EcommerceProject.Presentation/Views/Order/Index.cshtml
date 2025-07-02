@@ -1,0 +1,57 @@
+﻿@model List<CartItemViewModel>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your Cart</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Car Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CarName</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>
+                            <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center gap-2">
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control w-auto" />
+                                <input type="hidden" name="carId" value="@item.CarId" />
+                                <button type="submit" class="btn btn-sm btn-outline-info">Update</button>
+                            </form>
+                        </td>
+                        <td>@(item.Price * item.Quantity).ToString("C")</td>
+                        <td>
+                            <a href="@Url.Action("RemoveFromCart", "Cart", new { carId = item.CarId })" class="btn btn-sm btn-outline-danger">Remove</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Total Section -->
+        <div class="d-flex justify-content-end mt-3">
+            <h5>Total: <span class="text-success ms-2">@Model.Sum(item => item.Price * item.Quantity).ToString("C")</span></h5>
+        </div>
+
+        <!-- Actions -->
+        <div class="d-flex justify-content-between mt-4">
+            <a href="@Url.Action("Checkout", "Order")" class="btn btn-primary">Proceed to Checkout</a>
+            <a href="@Url.Action("ClearCart", "Cart")" class="btn btn-warning">Clear Cart</a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center mt-4">
+            Your cart is empty. Please add items to your cart before proceeding.
+        </div>
+    }
+</div>
